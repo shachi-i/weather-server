@@ -1,15 +1,14 @@
 const http = require('http');
 const https = require('https');
-const { URL } = require('url'); // Use URL from 'url' module
+const { URL } = require('url'); 
 
 const API_KEY = '5e77337e423aa2926d00668f14f3e991';
 const PORT = 3000;
 
 const server = http.createServer((req, res) => {
     const baseUrl = `http://${req.headers.host}`;
-    const parsedUrl = new URL(req.url, baseUrl); // Use a different variable name for the URL object
-    const city = parsedUrl.searchParams.get('city'); // Get the city parameter
-
+    const parsedUrl = new URL(req.url, baseUrl); 
+    const city = parsedUrl.searchParams.get('city'); 
     if (parsedUrl.pathname === '/weather' && req.method === 'GET') {
         if (!city) {
             res.writeHead(400, { 'Content-Type': 'application/json' });
